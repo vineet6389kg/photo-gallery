@@ -1,16 +1,38 @@
-# React + Vite
+# Photo Gallery
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React photo gallery that fetches photos from the Picsum Photos API, lets you search by author, and lets you mark favourites that persist across refreshes.
 
-Currently, two official plugins are available:
+## Tech stack
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- React (functional components + hooks)
+- Vite
+- Tailwind CSS
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- Fetches 30 photos from `https://picsum.photos/v2/list?limit=30`
+- Loading spinner and error message
+- Responsive grid: 4 columns (desktop), 2 (tablet), 1 (mobile)
+- Real-time search by author name (filters already-fetched data)
+- Favourites managed with `useReducer`, saved in `localStorage`
+- Custom hook `useFetchPhotos` returning `photos`, `loading`, `error`
+- `useCallback` for handlers and `useMemo` for the filtered list
 
-## Expanding the ESLint configuration
+## Getting started
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```bash
+npm install
+npm run dev
+```
+
+## Project structure
+
+```
+src/
+  components/   Gallery, PhotoCard, SearchBar, Spinner, ErrorMessage
+  hooks/        useFetchPhotos.js
+  reducers/     favouritesReducer.js
+  App.jsx
+  main.jsx
+  index.css     colour design tokens + Tailwind setup
+```
