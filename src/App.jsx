@@ -1,45 +1,27 @@
-import { useEffect, useReducer } from 'react'
-import useFetchPhotos from './hooks/useFetchPhotos'
-import {
-  favouritesReducer,
-  initFavourites,
-  STORAGE_KEY,
-  TOGGLE_FAVOURITE,
-} from './reducers/favouritesReducer'
+import { useState } from 'react'
+import Spinner from './components/Spinner'
+import ErrorMessage from './components/ErrorMessage'
+import SearchBar from './components/SearchBar'
+import PhotoCard from './components/PhotoCard'
 
 function App() {
-  const { photos, loading, error } = useFetchPhotos()
-  const [favourites, dispatch] = useReducer(favouritesReducer, [], initFavourites)
+  const [text, setText] = useState('')
+  const [fav, setFav] = useState(false)
 
-  // Save to localStorage every time favourites change
-  useEffect(() => {
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(favourites))
-  }, [favourites])
-
-  if (loading) return <p className="p-6 text-muted">Loading...</p>
-  if (error) return <p className="p-6 text-error">Error: {error}</p>
+  const samplePhoto = { id: '10', author: 'Paul Jarvis' }
 
   return (
-    <div className="p-6">
-      <p className="mb-4 font-medium text-fg">
-        Favourites: {favourites.length} ({favourites.join(', ') || 'none'})
-      </p>
-
-      <ul className="space-y-2">
-        {photos.slice(0, 5).map((photo) => (
-          <li key={photo.id}>
-            <button
-              onClick={() => dispatch({ type: TOGGLE_FAVOURITE, payload: photo.id })}
-              className="rounded-lg bg-accent-solid px-3 py-1 text-accent-solid-fg hover:bg-accent-hover"
-            >
-              Toggle {photo.author} (id {photo.id})
-            </button>
-            {favourites.includes(photo.id) && (
-              <span className="ml-2 text-success">★ favourite</span>
-            )}
-          </li>
-        ))}
-      </ul>
+    <div className="space-y-8 p-6">
+      <SearchBar value={text} onChange={(e) => setText(e.target.value)} />
+      <Spinner />
+      <ErrorMessage message="Request failed with status 500" />
+      <div className="max-w-xs">
+        <PhotoCard
+          photo={samplePhoto}
+          isFavourite={fav}
+          onToggleFavourite={() => setFav((f) => !f)}
+        />
+      </div>
     </div>
   )
 }
