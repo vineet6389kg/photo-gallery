@@ -1,27 +1,20 @@
-import { useState } from 'react'
-import Spinner from './components/Spinner'
-import ErrorMessage from './components/ErrorMessage'
-import SearchBar from './components/SearchBar'
-import PhotoCard from './components/PhotoCard'
+import Gallery from './components/Gallery'
 
 function App() {
-  const [text, setText] = useState('')
-  const [fav, setFav] = useState(false)
-
-  const samplePhoto = { id: '10', author: 'Paul Jarvis' }
-
   return (
-    <div className="space-y-8 p-6">
-      <SearchBar value={text} onChange={(e) => setText(e.target.value)} />
-      <Spinner />
-      <ErrorMessage message="Request failed with status 500" />
-      <div className="max-w-xs">
-        <PhotoCard
-          photo={samplePhoto}
-          isFavourite={fav}
-          onToggleFavourite={() => setFav((f) => !f)}
-        />
-      </div>
+    <div className="min-h-screen">
+      <header className="border-b border-border bg-surface">
+        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6">
+          <h1 className="text-3xl font-bold text-fg">Photo Gallery</h1>
+          <p className="mt-1 text-muted">
+            Browse photos and mark your favourites.
+          </p>
+        </div>
+      </header>
+
+      <main className="mx-auto max-w-7xl px-4 py-8 sm:px-6">
+        <Gallery />
+      </main>
     </div>
   )
 }
