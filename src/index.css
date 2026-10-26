@@ -1,1 +1,88 @@
 @import "tailwindcss";
+
+/* ---------- 1. Raw palette (light theme) ---------- */
+:root {
+  --c-bg: oklch(0.97846 0.00453 258.325);
+  --c-surface: oklch(0.93992 0.0063 258.696);
+  --c-raised: oklch(0.90909 0.00771 258.993);
+  --c-fg: oklch(0.20768 0.03982 265.755);
+  --c-muted: oklch(0.53141 0.025 262.634);
+  --c-border: oklch(0.20768 0.03982 265.755 / 0.14);
+  --c-border-strong: oklch(0.20768 0.03982 265.755 / 0.26);
+  --c-accent: oklch(0.4882 0.21717 264.376);
+  --c-accent-fg: oklch(0.99 0.006 264.376);
+  --c-accent-solid: oklch(0.4882 0.21717 264.376);
+  --c-accent-solid-fg: oklch(0.99 0.006 264.376);
+  --c-accent-hover: oklch(0.5482 0.21717 264.376);
+  --c-ring: oklch(0.4882 0.21717 264.376);
+  --c-secondary: oklch(0.54615 0.21521 262.881);
+  --c-secondary-fg: oklch(0.99 0.006 262.881);
+  --c-grad-from: oklch(0.4882 0.21717 264.376);
+  --c-grad-to: oklch(0.59597 0.12742 163.225);
+  --c-success: oklch(0.62 0.15 150);
+  --c-warning: oklch(0.72 0.15 75);
+  --c-error: oklch(0.58 0.19 27);
+  --c-info: oklch(0.59597 0.12742 163.225);
+}
+
+/* ---------- 2. Dark theme (not used yet, kept from your palette) ---------- */
+[data-theme="dark"] {
+  --c-bg: oklch(0.1689 0.02003 265.786);
+  --c-surface: oklch(0.20751 0.01972 265.414);
+  --c-raised: oklch(0.2384 0.01946 265.117);
+  --c-fg: oklch(0.94115 0.01375 258.346);
+  --c-muted: oklch(0.76216 0.01639 261.471);
+  --c-border: oklch(0.94115 0.01375 258.346 / 0.14);
+  --c-border-strong: oklch(0.94115 0.01375 258.346 / 0.26);
+  --c-accent: oklch(0.4882 0.21717 264.376);
+  --c-accent-fg: oklch(0.99 0.006 264.376);
+  --c-accent-solid: oklch(0.4882 0.21717 264.376);
+  --c-accent-solid-fg: oklch(0.99 0.006 264.376);
+  --c-accent-hover: oklch(0.5482 0.21717 264.376);
+  --c-ring: oklch(0.4882 0.21717 264.376);
+  --c-secondary: oklch(0.54615 0.21521 262.881);
+  --c-secondary-fg: oklch(0.99 0.006 262.881);
+  --c-grad-from: oklch(0.4882 0.21717 264.376);
+  --c-grad-to: oklch(0.59597 0.12742 163.225);
+  --c-success: oklch(0.72 0.15 150);
+  --c-warning: oklch(0.8 0.15 75);
+  --c-error: oklch(0.66 0.19 27);
+  --c-info: oklch(0.59597 0.12742 163.225);
+}
+
+/* ---------- 3. Connect the variables to Tailwind ---------- */
+@theme inline {
+  --color-bg: var(--c-bg);
+  --color-surface: var(--c-surface);
+  --color-raised: var(--c-raised);
+  --color-fg: var(--c-fg);
+  --color-muted: var(--c-muted);
+  --color-border: var(--c-border);
+  --color-border-strong: var(--c-border-strong);
+  --color-accent: var(--c-accent);
+  --color-accent-fg: var(--c-accent-fg);
+  --color-accent-solid: var(--c-accent-solid);
+  --color-accent-solid-fg: var(--c-accent-solid-fg);
+  --color-accent-hover: var(--c-accent-hover);
+  --color-ring: var(--c-ring);
+  --color-secondary: var(--c-secondary);
+  --color-secondary-fg: var(--c-secondary-fg);
+  --color-success: var(--c-success);
+  --color-error: var(--c-error);
+  --color-info: var(--c-info);
+}
+
+/* ---------- 4. Base page styles ---------- */
+@layer base {
+  body {
+    background-color: var(--c-bg);
+    color: var(--c-fg);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--c-ring);
+    outline-offset: 2px;
+  }
+}
