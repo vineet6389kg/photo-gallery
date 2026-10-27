@@ -36,3 +36,7 @@ src/
   main.jsx
   index.css     colour design tokens + Tailwind setup
 ```
+
+## AI tool usage
+
+I used an AI tool to help with writing the CSS (Tailwind classes and design tokens) and to debug the code. I reviewed and tested all the code, and I can explain how each part works.
